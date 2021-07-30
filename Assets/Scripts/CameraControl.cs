@@ -8,6 +8,6 @@ public class CameraControl : MonoBehaviour
 
     private void Update()
     {
-        Transform.Lerp(Transform.position, Target.transform.position, 0.5f);
+        
     }
 }
