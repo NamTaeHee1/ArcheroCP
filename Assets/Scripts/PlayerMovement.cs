@@ -23,14 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetAxis()
     {
-        
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
     }
 
     private void PlayerMove()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
-
         PlayerTransform.Translate(new Vector3(h, 0, v) * MoveSpeed * Time.del);
     }
 }
