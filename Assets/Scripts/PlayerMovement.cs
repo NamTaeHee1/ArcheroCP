@@ -30,6 +30,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        PlayerTransform.Translate(new Vector3(h, 0, v) * MoveSpeed * Time.deltaTime);
+        PlayerTransform.Translate(new Vector3(h, 0, v).normalized * MoveSpeed * Time.deltaTime);
     }
 }
