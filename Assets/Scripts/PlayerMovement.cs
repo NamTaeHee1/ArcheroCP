@@ -8,11 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private float v = 0;
     private float MoveSpeed = 3.0f;
 
-    private Transform PlayerTransform;
+    private Rigidbody PlayerRigidbody;
 
     private void Awake() 
     {
-            PlayerTransform = GetComponent<Transform>();
+            PlayerRigidbody = GetComponent<Rigidbody>();
     }
 
 
@@ -30,6 +30,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        PlayerTransform.Translate(new Vector3(h, 0, v).normalized * MoveSpeed * Time.deltaTime);
+        PlayerRigidbody.Translate(new Vector3(h, 0, v).normalized * MoveSpeed * Time.deltaTime);
     }
 }
