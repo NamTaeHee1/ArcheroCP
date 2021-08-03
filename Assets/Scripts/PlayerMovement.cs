@@ -10,11 +10,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform PlayerTransform;
 
+    private Animator PlayerAnimator;
+
     private bool isMoving = false;
 
     private void Awake() 
     {
             PlayerTransform = GetComponent<Transform>();
+            PlayerAnimator = GetComponent<Animator>();
     }
 
 
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         h = FindObjectOfType<JoyStickControl>().JoyStickVec.x;
         v = FindObjectOfType<JoyStickControl>().JoyStickVec.y;
         isMoving = (h != 0 || v != 0) ? true : false;
+        PlayerAnimator.SetBool("isMoving", isMoving);
     }
 
     private void PlayerMove()
