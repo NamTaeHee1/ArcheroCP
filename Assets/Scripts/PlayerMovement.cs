@@ -10,14 +10,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform PlayerTransform;
 
-    private Rigidbody PlayerRigidbody;
-
     private bool isMoving = false;
 
     private void Awake() 
     {
             PlayerTransform = GetComponent<Transform>();
-            PlayerRigidbody = GetComponent<Rigidbody>();
     }
 
 
@@ -38,11 +35,11 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerMove()
     {
         if(isMoving)
-            PlayerTransform.Translate(Vector3.forward * Time.deltaTime * MoveSpeed);
+            PlayerTransform.parent.transform.Translate(new Vector3(h, 0, v) * Time.deltaTime * MoveSpeed);
     }
 
     private void PlayerRotate()
     {
-        PlayerRigidbody.rotation = Quaternion.LookRotation(new Vector3(0, Mathf.Atan2(h, v) * Mathf.Rad2Deg, 0));
+        PlayerTransform.eulerAngles = new Vector3(0, Mathf.Atan2(h, v) * Mathf.Rad2Deg, 0);
     }
 }
