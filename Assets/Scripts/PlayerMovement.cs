@@ -10,9 +10,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform PlayerTransform;
 
+    private Rigidbody PlayerRigidbody;
+
+    private bool isMoving = false;
+
     private void Awake() 
     {
             PlayerTransform = GetComponent<Transform>();
+            PlayerRigidbody = GetComponent<Rigidbody>();
     }
 
 
@@ -20,16 +25,25 @@ public class PlayerMovement : MonoBehaviour
     {
         GetAxis();
         PlayerMove();
+        PlayerRotate();
     }
 
     private void GetAxis()
     {
         h = FindObjectOfType<JoyStickControl>().JoyStickVec.x;
         v = FindObjectOfType<JoyStickControl>().JoyStickVec.y;
+        if(h != 0 || v != 0)
+            isMoving = true;
     }
 
     private void PlayerMove()
     {
-        PlayerTransform.Translate(new Vector3(h, 0, v) * Time.deltaTime * MoveSpeed);
+        if(isMoving)
+            PlayerTransform.Translate(Vector3.forward * Time.deltaTime * MoveSpeed);
+    }
+
+    private void PlayerRotate()
+    {
+        PlayerRigidbody.rotation = Quaternion.LookRotation(new Vector3(0, v, 0));
     }
 }
