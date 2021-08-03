@@ -32,8 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         h = FindObjectOfType<JoyStickControl>().JoyStickVec.x;
         v = FindObjectOfType<JoyStickControl>().JoyStickVec.y;
-        if(h != 0 || v != 0)
-            isMoving = true;
+        isMoving = (h != 0 || v != 0) ? true : false;
     }
 
     private void PlayerMove()
@@ -44,6 +43,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerRotate()
     {
-        PlayerRigidbody.rotation = Quaternion.LookRotation(new Vector3(0, v, 0));
+        PlayerRigidbody.rotation = Quaternion.LookRotation(new Vector3(0, Mathf.Atan2(h, v) * Mathf.Rad2Deg, 0));
     }
 }
