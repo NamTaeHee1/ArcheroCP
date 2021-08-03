@@ -10,7 +10,7 @@ public class JoyStickControl : MonoBehaviour
     public Transform BGStick;
     public Transform SmallStick;
 
-    private Vector3 JoyStickVec;
+    public Vector3 JoyStickVec;
     private Vector3 JoyStickFirstPosition;
     [SerializeField] private Vector3 JoyStickResetPosition;
 

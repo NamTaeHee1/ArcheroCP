@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void GetAxis()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
+        h = FindObjectOfType<JoyStickControl>().JoyStickVec.x;
+        v = FindObjectOfType<JoyStickControl>().JoyStickVec.y;
     }
 
     private void PlayerMove()
