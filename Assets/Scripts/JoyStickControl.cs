@@ -7,15 +7,24 @@ public class JoyStickControl : MonoBehaviour
 {
     private float Radius;
 
-    public Transform Stick;
+    public Transform BGStick;
+    public Transform SmallStick;
 
     private Vector3 JoyStickVec;
     private Vector3 JoyStickFirstPosition;
+    [SerializeField] private Vector3 JoyStickResetPosition;
 
     private void Start() 
     {
-        Radius = GetComponent<RectTransform>().sizeDelta.x * 0.5f;
-        JoyStickFirstPosition = Stick.transform.position;
+        Radius = BGStick.gameObject.GetComponent<RectTransform>().sizeDelta.x * 0.5f;
+        JoyStickFirstPosition = SmallStick.transform.position;
+    }
+
+    public void PointerDown()
+    {
+        BGStick.position = Input.mousePosition;
+        SmallStick.position = Input.mousePosition;
+        JoyStickFirstPosition = Input.mousePosition;
     }
 
     public void Drag(BaseEventData _Data)
@@ -27,12 +36,13 @@ public class JoyStickControl : MonoBehaviour
 
         float Distance = Vector3.Distance(Position, JoyStickFirstPosition);
 
-        Stick.position = JoyStickFirstPosition + JoyStickVec * (Distance < Radius ? Distance : Radius);
+        SmallStick.position = JoyStickFirstPosition + JoyStickVec * (Distance < Radius ? Distance : Radius);
     }
 
     public void DragEnd()
     {
-        Stick.position = JoyStickFirstPosition;
+        BGStick.position = JoyStickResetPosition;
+        SmallStick.position = JoyStickResetPosition;
         JoyStickVec = Vector3.zero;
     }
 }
