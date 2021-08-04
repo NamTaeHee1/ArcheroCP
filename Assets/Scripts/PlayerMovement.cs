@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float h = 0;
     private float v = 0;
-    private float MoveSpeed = 3.0f;
+    [SerializeField] private float MoveSpeed = 6.0f;
 
     private Transform PlayerTransform;
 
@@ -24,8 +24,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetAxis();
-        PlayerMove();
         PlayerRotate();
+    }
+
+    private void FixedUpdate() 
+    {
+        PlayerMove();
     }
 
     private void GetAxis()
