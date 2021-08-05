@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class RoomControl : MonoBehaviour
 {
-    public static List<GameObject> EnemyList = new List<GameObject>();
+    public List<GameObject> RoomInEnemyList = new List<GameObject>();
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Player")) 
+        {
+            PlayerTargeting.EnemyList = new List<GameObject>(RoomInEnemyList);
+        }
+        else if(other.CompareTag("Enemy"))
+        {
+            RoomInEnemyList.Add(other.gameObject);
+        }
     }
 }
