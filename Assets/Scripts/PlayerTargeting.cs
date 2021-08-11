@@ -17,13 +17,20 @@ public class PlayerTargeting : MonoBehaviour
     private void FixedUpdate() 
     {
         CheckEnemyCollider();
-        for(int i = 0; i < HitEnemyColliders.Length; i++)
-            print(HitEnemyColliders[i].transform.name);
+        if(HitEnemyColliders.Length != 0)
+            PlayerAttackControl.AttackTarget = SelectTarget();
     }
 
     private void CheckEnemyCollider()
     {
         HitEnemyColliders = Physics.OverlapSphere(transform.position, 6.0f, EnemyLayerMask);
+    }
+
+    public GameObject SelectTarget()
+    {
+        GameObject NearTarget = HitEnemyColliders[0].transform.gameObject;
+
+        return NearTarget;
     }
 
 }

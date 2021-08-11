@@ -14,6 +14,8 @@ public class JoyStickControl : MonoBehaviour
     private Vector3 JoyStickFirstPosition;
     [SerializeField] private Vector3 JoyStickResetPosition;
 
+    public bool isDragEnd;
+
     private void Start() 
     {
         Radius = BGStick.gameObject.GetComponent<RectTransform>().sizeDelta.x * 0.5f;
@@ -22,6 +24,7 @@ public class JoyStickControl : MonoBehaviour
 
     public void PointerDown()
     {
+        isDragEnd = false;
         BGStick.position = Input.mousePosition;
         SmallStick.position = Input.mousePosition;
         JoyStickFirstPosition = Input.mousePosition;
@@ -29,6 +32,7 @@ public class JoyStickControl : MonoBehaviour
 
     public void Drag(BaseEventData _Data)
     {
+        isDragEnd = false;
         PointerEventData Data = _Data as PointerEventData;
         Vector3 Position = Data.position;
 
@@ -44,5 +48,6 @@ public class JoyStickControl : MonoBehaviour
         BGStick.position = JoyStickResetPosition;
         SmallStick.position = JoyStickResetPosition;
         JoyStickVec = Vector3.zero;
+        isDragEnd = true;
     }
 }
