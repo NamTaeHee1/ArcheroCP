@@ -8,9 +8,10 @@ public class PlayerAttackControl : MonoBehaviour
 
     private void Update() 
     {
-        if(AttackTarget != null && FindObjectOfType<JoyStickControl>().isDragEnd)
+        if(AttackTarget != null && FindObjectOfType<JoyStickControl>().isDragEnd) {
             StartCoroutine(Attack());
-        print(AttackTarget.name);
+            print(AttackTarget.name);
+        }
     }
 
     private IEnumerator Attack()

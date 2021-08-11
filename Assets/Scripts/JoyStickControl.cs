@@ -22,7 +22,7 @@ public class JoyStickControl : MonoBehaviour
         JoyStickFirstPosition = SmallStick.transform.position;
     }
 
-    public void PointerDown()
+    public void PointerDown() //화면에 클릭을 감지 하였을 때
     {
         isDragEnd = false;
         BGStick.position = Input.mousePosition;
@@ -30,7 +30,7 @@ public class JoyStickControl : MonoBehaviour
         JoyStickFirstPosition = Input.mousePosition;
     }
 
-    public void Drag(BaseEventData _Data)
+    public void Drag(BaseEventData _Data) // 조이스틱을 움직이고 있을 경우
     {
         isDragEnd = false;
         PointerEventData Data = _Data as PointerEventData;
@@ -43,7 +43,7 @@ public class JoyStickControl : MonoBehaviour
         SmallStick.position = JoyStickFirstPosition + JoyStickVec * (Distance < Radius ? Distance : Radius);
     }
 
-    public void DragEnd()
+    public void DragEnd() // 조이스틱에서 손을 놓았을 경우
     {
         BGStick.position = JoyStickResetPosition;
         SmallStick.position = JoyStickResetPosition;

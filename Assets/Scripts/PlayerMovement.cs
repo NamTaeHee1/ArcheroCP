@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerMove();
     }
 
-    private void GetAxis()
+    private void GetAxis() // 현재 조이스틱의 위치 값을 받아옴.
     {
         h = FindObjectOfType<JoyStickControl>().JoyStickVec.x;
         v = FindObjectOfType<JoyStickControl>().JoyStickVec.y;
@@ -40,13 +40,13 @@ public class PlayerMovement : MonoBehaviour
         PlayerAnimator.SetBool("isMoving", isMoving);
     }
 
-    private void PlayerMove()
+    private void PlayerMove() // 조이스틱의 위치에 맞게 플레이어를 이동
     {
         if(isMoving)
             PlayerTransform.parent.transform.Translate(new Vector3(h, 0, v) * Time.deltaTime * MoveSpeed);
     }
 
-    private void PlayerRotate()
+    private void PlayerRotate() // 조이스틱이 이동한 위치를 바라보게 회전
     {
         PlayerTransform.eulerAngles = new Vector3(0, Mathf.Atan2(h, v) * Mathf.Rad2Deg, 0);
     }

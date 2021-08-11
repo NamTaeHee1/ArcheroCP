@@ -14,7 +14,7 @@ public class PlayerTargeting : MonoBehaviour
         EnemyLayerMask = LayerMask.GetMask("Enemy");
     }
 
-    private void FixedUpdate() 
+    private void Update() 
     {
         CheckEnemyCollider();
         if(HitEnemyColliders.Length != 0)
@@ -24,9 +24,11 @@ public class PlayerTargeting : MonoBehaviour
     private void CheckEnemyCollider()
     {
         HitEnemyColliders = Physics.OverlapSphere(transform.position, 6.0f, EnemyLayerMask);
+        for(int i = 0; i < HitEnemyColliders.Length; i++)
+            print(HitEnemyColliders[i].gameObject.name);
     }
 
-    public GameObject SelectTarget()
+    private GameObject SelectTarget()
     {
         GameObject NearTarget = HitEnemyColliders[0].transform.gameObject;
 
